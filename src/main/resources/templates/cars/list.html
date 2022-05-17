@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Autók listája</title>
+
+  <link rel="stylesheet"
+        th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+  <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container">
+  <h3 class="pt-5">Autók listája</h3>
+
+  <a th:href="@{/auto-shop/create}"
+     type="button"
+     class="btn btn-info">Új autó hozzáadása</a>
+
+  <table class="table table-striped pt-5">
+    <caption>Autók listája</caption>
+    <thread>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Márka</th>
+        <th scope="col">Model</th>
+        <th scope="col">Ár($)</th>
+        <th scope="col">Műveletek</th>
+      </tr>
+    </thread>
+    <tbody>
+    <tr th:each="car: ${cars}">
+      <th scope="row"
+          th:text="${car.id}"></th>
+      <td th:text="${car.brand}"></td>
+      <td th:text="${car.model}"></td>
+      <td th:text="${car.price}"></td>
+      <td>
+        <a th:href="@{'/auto-shop/' + ${car.id}}"
+           type="button"
+           class="btn btn-warning">Szerkesztés</a>
+
+        <a th:href="@{'/auto-shop/' + ${car.id} +  '/delete'}"
+           type="button"
+           class="btn btn-danger">Törlés</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>
